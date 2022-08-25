@@ -1,0 +1,12 @@
+.homeHeader img{
+    height: 500px;
+    width: 96%;
+    padding: 3%;
+}
+
+.homeHeader{
+    background-color: #d3e3ea;
+    justify-content: center;
+    position: relative;
+    
+}

@@ -1,0 +1,69 @@
+<mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="margin-left: 40px;margin-right:40px">
+    <ng-container matColumnDef="{{column.id}}" *ngFor="let column of columnNames">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{column.value}}</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[column.id]}}</mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <div style="margin-left: 40px; margin-top: 20px;">
+    <button   type="submit" class="btn btn-primary" (click)="onOpenModal(null, 'add')" >Add New Bill</button>
+ </div>
+
+ <div class="container" id="main-container"></div>
+
+ <div class="modal fade" id="addBillModal" tabindex="-1" role="dialog" aria-labelledby="addBillModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addBillModalLabel">Add New Bill</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddBill(addForm)">
+            <div class="form-group">
+                <label for="sequenceid">Sequence Number</label>
+                <input type="text" ngModel name="sequenceId" class="form-control" id="sequenceId" placeholder="Sequence Number" required>
+                </div>
+            <div class="form-group">
+               <label for="accountno">Account Number</label>
+               <input type="text" ngModel name="accountNo" class="form-control" id="accountNo" placeholder="Account Number" required>
+            </div>
+            <div class="form-group">
+               <label for="consumernumber">Consumer Number</label>
+               <input type="text" ngModel name="consumerNumber" class="form-control" id="consumerNumber" placeholder="Consumer Number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="billercode">Biller Code</label>
+                <input type="text" ngModel name="billerCode" class="form-control" id="billerCode" placeholder="Biller Code" required>
+             </div>
+             <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="text" ngModel name="amount" class="form-control" id="amount" placeholder="Amount" required>
+             </div>
+
+             <div class="form-group">
+                <label for="duedate">Due Date</label>
+                <input type="date" ngModel name="dueDate" class="form-control" id="dueDate" placeholder="Due Date" required>
+             </div>
+             
+             <div class="form-group">
+                <label for="name">Status</label>
+                <input type="text" ngModel name="status" class="form-control" id="status" placeholder="Status" required>
+             </div>
+
+            <div class="modal-footer">
+               <button type="button" id="add-bill-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>
+  
